@@ -1,0 +1,20 @@
+apply plugin:'java'
+apply plugin:'idea'
+ 
+repositories { mavenCentral() }
+ 
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+task makeDirs(description:'make all dirs for project setup') << {
+    def sources = [sourceSets.main, sourceSets.test]
+    sources*.allSource*.srcDirs.flatten().each { File srcDir ->
+        println "making $srcDir"
+        srcDir.mkdirs()
+    } 
+}
+ 
+task wrap(type:Wrapper, description:'create a gradlew') {
+    gradleVersion = '1.10'
+}
