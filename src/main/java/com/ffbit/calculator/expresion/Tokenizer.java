@@ -10,8 +10,15 @@ public class Tokenizer {
         List<String> tokens = new ArrayList<String>(chars.length);
 
         for (char c : chars) {
-            if (!Character.isWhitespace(c)) {
+            if (Character.isWhitespace(c)) {
+                continue;
+            }
+
+            if (Character.isDigit(c)
+                    || c == '+') {
                 tokens.add(String.valueOf(c));
+            } else {
+                throw new TokenizerException();
             }
         }
 
