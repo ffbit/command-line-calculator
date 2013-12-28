@@ -10,6 +10,7 @@ import static org.junit.Assert.assertThat;
 
 public class TokenizerTest {
     private Tokenizer tokenizer;
+    private String expression;
 
     @Before
     public void setUp() throws Exception {
@@ -18,7 +19,7 @@ public class TokenizerTest {
 
     @Test
     public void itShouldTokenizeSingleDigitExpression() throws Exception {
-        String expression = "1";
+        expression = "1";
 
         assertThat(tokenizer.tokenize(expression), hasItem("1"));
         assertThat(tokenizer.tokenize(expression), hasSize(1));
@@ -26,7 +27,7 @@ public class TokenizerTest {
 
     @Test
     public void itShouldParseSimplestAdditionExpression() throws Exception {
-        String expression = "1+2";
+        expression = "1+2";
 
         assertThat(tokenizer.tokenize(expression), hasItems("1", "+", "2"));
         assertThat(tokenizer.tokenize(expression), hasSize(3));
@@ -34,7 +35,7 @@ public class TokenizerTest {
 
     @Test
     public void itShouldIgnoreWightSpaces() throws Exception {
-        String expression = " 1  +   2 ";
+        expression = " 1  +   2 ";
 
         assertThat(tokenizer.tokenize(expression), hasItems("1", "+", "2"));
         assertThat(tokenizer.tokenize(expression), hasSize(3));
@@ -42,7 +43,7 @@ public class TokenizerTest {
 
     @Test(expected = TokenizerException.class)
     public void itShouldNotAllowNonArithmeticalSymbols() throws Exception {
-        String expression = "a";
+        expression = "a";
 
         tokenizer.tokenize(expression);
     }
