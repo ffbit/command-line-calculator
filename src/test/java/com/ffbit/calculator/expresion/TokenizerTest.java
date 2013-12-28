@@ -32,4 +32,12 @@ public class TokenizerTest {
         assertThat(tokenizer.tokenize(expression), hasSize(3));
     }
 
+    @Test
+    public void itShouldIgnoreWightSpaces() throws Exception {
+        String expression = " 1  +   2 ";
+
+        assertThat(tokenizer.tokenize(expression), hasItems("1", "+", "2"));
+        assertThat(tokenizer.tokenize(expression), hasSize(3));
+    }
+
 }
