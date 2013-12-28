@@ -10,7 +10,9 @@ public class Tokenizer {
         List<String> tokens = new ArrayList<String>(chars.length);
 
         for (char c : chars) {
-            tokens.add(String.valueOf(c));
+            if (!Character.isWhitespace(c)) {
+                tokens.add(String.valueOf(c));
+            }
         }
 
         return tokens;
