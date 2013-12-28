@@ -1,13 +1,13 @@
 package com.ffbit.calculator.expresion;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 public class Tokenizer {
 
-    public Collection<String> tokenize(String expression) {
+    public List<String> tokenize(String expression) {
         char[] chars = expression.toCharArray();
-        Collection<String> tokens = new ArrayList<String>(chars.length);
+        List<String> tokens = new ArrayList<String>(chars.length);
 
         for (char c : chars) {
             tokens.add(String.valueOf(c));
