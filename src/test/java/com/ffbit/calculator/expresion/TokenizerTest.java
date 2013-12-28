@@ -40,4 +40,11 @@ public class TokenizerTest {
         assertThat(tokenizer.tokenize(expression), hasSize(3));
     }
 
+    @Test(expected = TokenizerException.class)
+    public void itShouldNotAllowNonArithmeticalSymbols() throws Exception {
+        String expression = "a";
+
+        tokenizer.tokenize(expression);
+    }
+
 }
