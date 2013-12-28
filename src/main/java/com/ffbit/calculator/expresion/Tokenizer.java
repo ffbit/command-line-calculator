@@ -1,12 +1,19 @@
 package com.ffbit.calculator.expresion;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Tokenizer {
 
     public Collection<String> tokenize(String expression) {
-        return Arrays.asList(expression);
+        char[] chars = expression.toCharArray();
+        Collection<String> tokens = new ArrayList<String>(chars.length);
+
+        for (char c : chars) {
+            tokens.add(String.valueOf(c));
+        }
+
+        return tokens;
     }
 
 }
