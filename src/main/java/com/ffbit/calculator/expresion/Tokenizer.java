@@ -7,11 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Tokenizer {
-    private Set<Character> operations;
-
-    public Tokenizer() {
-        operations = new HashSet<Character>(Arrays.asList('+', '-', '*', '/'));
-    }
 
     public List<String> tokenize(String expression) {
         char[] chars = expression.toCharArray();
@@ -22,8 +17,8 @@ public class Tokenizer {
                 continue;
             }
 
-            if (Character.isDigit(c) ||
-                    operations.contains(c)) {
+            if (Character.isDigit(c)
+                    || isOperator(c)) {
                 tokens.add(String.valueOf(c));
             } else {
                 throw new TokenizerException();
@@ -31,6 +26,13 @@ public class Tokenizer {
         }
 
         return tokens;
+    }
+
+    private boolean isOperator(char c) {
+        final Set<Character> operations =
+                new HashSet<Character>(Arrays.asList('+', '-', '*', '/'));
+
+        return operations.contains(c);
     }
 
 }
