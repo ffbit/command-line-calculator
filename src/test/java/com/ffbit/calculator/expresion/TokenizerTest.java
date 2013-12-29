@@ -50,6 +50,14 @@ public class TokenizerTest {
     }
 
     @Test
+    public void itShouldTokenizeSimplestDivisionExpression() throws Exception {
+        expression = "1/2";
+
+        assertThat(tokenizer.tokenize(expression), hasItems("1", "/", "2"));
+        assertThat(tokenizer.tokenize(expression), hasSize(3));
+    }
+
+    @Test
     public void itShouldIgnoreWightSpaces() throws Exception {
         expression = " 1  +   2 ";
 
