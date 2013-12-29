@@ -12,13 +12,23 @@ public class Tokenizer {
         char[] chars = expression.toCharArray();
         List<String> tokens = new ArrayList<String>(chars.length);
 
-        for (char c : chars) {
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+
             if (Character.isWhitespace(c)) {
                 continue;
             }
 
-            if (Character.isDigit(c)
-                    || isOperator(c)) {
+            if (Character.isDigit(c)) {
+                int nextIndex = i;
+
+                while (isNextDigit(expression, nextIndex)) {
+                    nextIndex++;
+                }
+
+                tokens.add(expression.substring(i, nextIndex + 1));
+                i = nextIndex;
+            } else if (isOperator(c)) {
                 tokens.add(String.valueOf(c));
             } else {
                 throw new TokenizerException();
@@ -26,6 +36,16 @@ public class Tokenizer {
         }
 
         return tokens;
+    }
+
+    private boolean isNextDigit(String expression, int currentIndex) {
+        int nextIndex = currentIndex + 1;
+
+        if (nextIndex == expression.length()) {
+            return false;
+        }
+
+        return Character.isDigit(expression.charAt(nextIndex));
     }
 
     private boolean isOperator(char c) {
