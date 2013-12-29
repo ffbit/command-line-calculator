@@ -15,7 +15,8 @@ public class Tokenizer {
             }
 
             if (Character.isDigit(c)
-                    || c == '+') {
+                    || c == '+'
+                    || c == '-') {
                 tokens.add(String.valueOf(c));
             } else {
                 throw new TokenizerException();
