@@ -24,7 +24,7 @@ public class Tokenizer {
             } else if (isOperator(c)) {
                 tokens.add(String.valueOf(c));
             } else {
-                throw new TokenizerException();
+                throw new TokenizerException(c, i);
             }
         }
 

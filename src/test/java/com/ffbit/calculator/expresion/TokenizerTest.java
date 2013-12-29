@@ -7,8 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.String.format;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class TokenizerTest {
     private Tokenizer tokenizer;
@@ -61,11 +63,16 @@ public class TokenizerTest {
         assertThat(tokenizer.tokenize(expression), contains("1", "+", "2"));
     }
 
-    @Test(expected = TokenizerException.class)
-    public void itShouldNotAllowNonArithmeticalSymbols() throws Exception {
+    @Test
+    public void itShouldNotAllowNonArithmeticalSymbolsWithMeaningfulMessage() throws Exception {
         expression = "a";
 
-        tokenizer.tokenize(expression);
+        try {
+            tokenizer.tokenize(expression);
+            fail("It should not tokenize expression with non-arithmetical symbols " + expression);
+        } catch (TokenizerException e) {
+            assertThat(e.getMessage(), is("Bad symbol 'a' occurred at position '0'"));
+        }
     }
 
     @Test
