@@ -3,6 +3,10 @@ package com.ffbit.calculator.expresion;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static java.lang.String.format;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
@@ -62,6 +66,16 @@ public class TokenizerTest {
         expression = "a";
 
         tokenizer.tokenize(expression);
+    }
+
+    @Test
+    public void itShouldTokenizeMultiDigitExpression() throws Exception {
+        expression = "12";
+        String[] expected = {"12"};
+
+        List<String> actual = tokenizer.tokenize(expression);
+        String reason = format("actual is %s but expected %s", actual, Arrays.toString(expected));
+        assertThat(reason, actual, contains(expected));
     }
 
 }
