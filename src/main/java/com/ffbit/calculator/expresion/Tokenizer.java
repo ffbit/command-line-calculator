@@ -17,17 +17,10 @@ public class Tokenizer {
 
             if (Character.isWhitespace(c)) {
                 continue;
-            }
-
-            if (Character.isDigit(c)) {
-                int nextIndex = i;
-
-                while (isNextDigit(expression, nextIndex)) {
-                    nextIndex++;
-                }
-
-                tokens.add(expression.substring(i, nextIndex + 1));
-                i = nextIndex;
+            } else if (Character.isDigit(c)) {
+                String number = readNumber(expression, i);
+                tokens.add(number);
+                i = i + number.length() - 1;
             } else if (isOperator(c)) {
                 tokens.add(String.valueOf(c));
             } else {
@@ -38,14 +31,15 @@ public class Tokenizer {
         return tokens;
     }
 
-    private boolean isNextDigit(String expression, int currentIndex) {
-        int nextIndex = currentIndex + 1;
+    private String readNumber(String expression, int startIndex) {
+        int endIndex = startIndex;
 
-        if (nextIndex == expression.length()) {
-            return false;
+        while (endIndex < expression.length()
+                && Character.isDigit(expression.charAt(endIndex))) {
+            endIndex++;
         }
 
-        return Character.isDigit(expression.charAt(nextIndex));
+        return expression.substring(startIndex, endIndex);
     }
 
     private boolean isOperator(char c) {
