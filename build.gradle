@@ -9,6 +9,7 @@ dependencies {
         exclude group: "org.hamcrest"
     }
     testCompile 'org.hamcrest:hamcrest-library:1.3'
+    testCompile 'com.googlecode.catch-exception:catch-exception:1.2.0'
 }
 
 task makeDirs(description:'make all dirs for project setup') << {
