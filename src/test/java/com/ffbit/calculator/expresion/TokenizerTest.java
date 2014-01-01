@@ -6,7 +6,10 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.googlecode.catchexception.CatchException.catchException;
+import static com.googlecode.catchexception.CatchException.caughtException;
 import static java.lang.String.format;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
@@ -67,12 +70,10 @@ public class TokenizerTest {
     public void itShouldNotAllowNonArithmeticalSymbolsWithMeaningfulMessage() throws Exception {
         expression = "a";
 
-        try {
-            tokenizer.tokenize(expression);
-            fail("It should not tokenize expression with non-arithmetical symbols " + expression);
-        } catch (TokenizerException e) {
-            assertThat(e.getMessage(), is("Bad symbol 'a' occurred at position '0'"));
-        }
+        catchException(tokenizer).tokenize(expression);
+
+        assertThat(caughtException(), is(instanceOf(TokenizerException.class)));
+        assertThat(caughtException().getMessage(), is("Bad symbol 'a' occurred at position '0'"));
     }
 
     @Test
