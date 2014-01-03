@@ -10,6 +10,7 @@ dependencies {
     }
     testCompile 'org.hamcrest:hamcrest-library:1.3'
     testCompile 'com.googlecode.catch-exception:catch-exception:1.2.0'
+    testCompile 'pl.pragmatists:JUnitParams:1.0.2'
 }
 
 task makeDirs(description:'make all dirs for project setup') << {
