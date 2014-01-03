@@ -19,6 +19,14 @@ public class Token {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Token token = (Token) o;
+
+        if (lexeme != null ? !lexeme.equals(token.lexeme) : token.lexeme != null) return false;
+        if (type != token.type) return false;
+
         return true;
     }
 
