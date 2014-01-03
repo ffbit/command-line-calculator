@@ -1,0 +1,5 @@
+package com.ffbit.calculator.expresion;
+
+public enum TokenType {
+    LITERAL
+}
