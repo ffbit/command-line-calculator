@@ -15,4 +15,11 @@ public class TokenTest {
         assertThat(token.getType(), is(TokenType.LITERAL));
     }
 
+    @Test
+    public void itShouldBeEqual() throws Exception {
+        Token token = new Token("1", TokenType.LITERAL);
+
+        assertThat(token, is(new Token("1", TokenType.LITERAL)));
+    }
+
 }
