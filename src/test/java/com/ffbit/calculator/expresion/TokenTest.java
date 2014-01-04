@@ -15,8 +15,12 @@ public class TokenTest {
     private final Token token = new Token("1", TokenType.LITERAL);
 
     @Test
-    public void itShouldHaveLexemeAndType() throws Exception {
+    public void itShouldHaveLexeme() throws Exception {
         assertThat(token.getLexeme(), is("1"));
+    }
+
+    @Test
+    public void itShouldHaveType() throws Exception {
         assertThat(token.getType(), is(TokenType.LITERAL));
     }
 
