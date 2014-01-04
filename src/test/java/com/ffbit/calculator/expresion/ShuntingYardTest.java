@@ -16,6 +16,7 @@ public class ShuntingYardTest {
     private Token plus = new Token("+", TokenType.ADDITION);
     private Token minus = new Token("-", TokenType.SUBTRACTION);
     private Token multiply = new Token("*", TokenType.MULTIPLY);
+    private Token divide = new Token("/", TokenType.MULTIPLY);
 
     private ShuntingYard shuntingYard;
     private List<Token> inputTokens;
@@ -48,6 +49,14 @@ public class ShuntingYardTest {
         inputTokens = Arrays.asList(one, multiply, two);
 
         assertThat(shuntingYard.toRpn(inputTokens), contains(one, two, multiply));
+    }
+
+    @Test
+    public void itShouldShuntSimplestDivisionTokensToReversePolishNotation()
+            throws Exception {
+        inputTokens = Arrays.asList(one, divide, two);
+
+        assertThat(shuntingYard.toRpn(inputTokens), contains(one, two, divide));
     }
 
 }
