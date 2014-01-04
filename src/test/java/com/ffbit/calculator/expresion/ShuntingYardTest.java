@@ -15,9 +15,11 @@ public class ShuntingYardTest {
 
     private Token plus = new Token("+", TokenType.ADDITION);
     private Token minus = new Token("-", TokenType.SUBTRACTION);
+    private Token multiply = new Token("*", TokenType.MULTIPLY);
 
     private ShuntingYard shuntingYard;
     private List<Token> inputTokens;
+
 
     @Before
     public void setUp() throws Exception {
@@ -38,6 +40,14 @@ public class ShuntingYardTest {
         inputTokens = Arrays.asList(one, minus, two);
 
         assertThat(shuntingYard.toRpn(inputTokens), contains(one, two, minus));
+    }
+
+    @Test
+    public void itShouldShuntSimplestMultiplicationTokensToReversePolishNotation()
+            throws Exception {
+        inputTokens = Arrays.asList(one, multiply, two);
+
+        assertThat(shuntingYard.toRpn(inputTokens), contains(one, two, multiply));
     }
 
 }
