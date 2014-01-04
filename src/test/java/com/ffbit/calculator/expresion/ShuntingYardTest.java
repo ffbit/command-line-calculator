@@ -22,4 +22,16 @@ public class ShuntingYardTest {
         assertThat(shuntingYard.toRpn(tokens), contains(one, two, plus));
     }
 
+    @Test
+    public void itShouldShuntSimplestSubtractionTokensToReversePolishNotation()
+            throws Exception {
+        ShuntingYard shuntingYard = new ShuntingYard();
+        Token one = new Token("1", TokenType.LITERAL);
+        Token minus = new Token("-", TokenType.SUBTRACTION);
+        Token two = new Token("2", TokenType.LITERAL);
+        List<Token> tokens = Arrays.asList(one, minus, two);
+
+        assertThat(shuntingYard.toRpn(tokens), contains(one, two, minus));
+    }
+
 }
