@@ -26,4 +26,16 @@ public class RpnEvaluatorTest {
         assertThat(evaluator.evaluate(rpnTokens), is(1));
     }
 
+    @Test
+    public void itShouldEvaluateOnePlusTwoToThree() throws Exception {
+        RpnEvaluator evaluator = new RpnEvaluator();
+        List<Token> rpnTokens = Arrays.asList(
+                new Token("1", TokenType.LITERAL),
+                new Token("2", TokenType.LITERAL),
+                new Token("+", TokenType.ADDITION)
+        );
+
+        assertThat(evaluator.evaluate(rpnTokens), is(3));
+    }
+
 }
