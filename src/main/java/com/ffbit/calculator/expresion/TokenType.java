@@ -4,7 +4,8 @@ public enum TokenType {
     LITERAL,
     ADDITION(1),
     SUBTRACTION(1),
-    MULTIPLY(2);
+    MULTIPLY(2),
+    DIVISION(2);
 
     private int precedence;
 

@@ -3,6 +3,7 @@ package com.ffbit.calculator.expresion;
 import org.junit.Test;
 
 import static com.ffbit.calculator.expresion.TokenType.ADDITION;
+import static com.ffbit.calculator.expresion.TokenType.DIVISION;
 import static com.ffbit.calculator.expresion.TokenType.MULTIPLY;
 import static com.ffbit.calculator.expresion.TokenType.SUBTRACTION;
 import static org.hamcrest.CoreMatchers.is;
