@@ -15,8 +15,8 @@ public class ShuntingYardTest {
 
     private Token plus = new Token("+", TokenType.ADDITION);
     private Token minus = new Token("-", TokenType.SUBTRACTION);
-    private Token multiply = new Token("*", TokenType.MULTIPLY);
-    private Token divide = new Token("/", TokenType.MULTIPLY);
+    private Token multiply = new Token("*", TokenType.MULTIPLICATION);
+    private Token divide = new Token("/", TokenType.MULTIPLICATION);
 
     private ShuntingYard shuntingYard;
     private List<Token> inputTokens;

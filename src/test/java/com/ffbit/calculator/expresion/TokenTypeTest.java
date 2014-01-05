@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static com.ffbit.calculator.expresion.TokenType.ADDITION;
 import static com.ffbit.calculator.expresion.TokenType.DIVISION;
-import static com.ffbit.calculator.expresion.TokenType.MULTIPLY;
+import static com.ffbit.calculator.expresion.TokenType.MULTIPLICATION;
 import static com.ffbit.calculator.expresion.TokenType.SUBTRACTION;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.comparesEqualTo;
@@ -20,7 +20,7 @@ public class TokenTypeTest {
 
     @Test
     public void MultiplicationShouldHaveGreaterPrecedenceThanAddition() throws Exception {
-        assertThat(MULTIPLY.getPrecedence(), is(greaterThan(ADDITION.getPrecedence())));
+        assertThat(MULTIPLICATION.getPrecedence(), is(greaterThan(ADDITION.getPrecedence())));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class TokenTypeTest {
 
     @Test
     public void MultiplicationShouldHaveSamePrecedenceAsDivision() throws Exception {
-        assertThat(MULTIPLY.getPrecedence(), is(comparesEqualTo(DIVISION.getPrecedence())));
+        assertThat(MULTIPLICATION.getPrecedence(), is(comparesEqualTo(DIVISION.getPrecedence())));
     }
 
 }
