@@ -18,14 +18,16 @@ public class RpnEvaluator {
                 Integer argument = Integer.valueOf(token.getLexeme());
                 stack.addFirst(argument);
             } else {
-                Integer left = stack.removeFirst();
                 Integer right = stack.removeFirst();
+                Integer left = stack.removeFirst();
                 Integer result = 0;
 
                 if (token.getType() == TokenType.ADDITION) {
                     result = left + right;
                 } else if ((token.getType() == TokenType.MULTIPLICATION)) {
                     result = left * right;
+                } else if ((token.getType() == TokenType.SUBTRACTION)) {
+                    result = left - right;
                 }
 
                 stack.addFirst(result);
