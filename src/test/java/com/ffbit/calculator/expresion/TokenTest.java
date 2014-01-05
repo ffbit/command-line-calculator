@@ -5,6 +5,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
@@ -37,6 +38,34 @@ public class TokenTest {
     })
     public void itShouldNotBeEqual(String lexeme, TokenType type) throws Exception {
         assertThat(token, is(not(new Token(lexeme, type))));
+    }
+
+    @Test
+    public void itShouldBeLiteral() throws Exception {
+        assertThat(token.isLiteral(), is(true));
+    }
+
+    @Test
+    @Parameters({
+            "+, ADDITION",
+            "-, SUBTRACTION",
+            "*, MULTIPLICATION",
+            "/, DIVISION"
+    })
+    public void itShouldNotBeLiteral(String lexeme, TokenType type) throws Exception {
+        assertThat(new Token(lexeme, type).isLiteral(), is(false));
+    }
+
+    @Test
+    @Parameters({
+            "LITERAL",
+            "ADDITION",
+            "SUBTRACTION",
+            "MULTIPLICATION",
+            "DIVISION"
+    })
+    public void itShouldHaveSamePrecedenceAsType(TokenType type) throws Exception {
+        assertThat(new Token("lexeme", type).getPrecedence(), is(type.getPrecedence()));
     }
 
 }

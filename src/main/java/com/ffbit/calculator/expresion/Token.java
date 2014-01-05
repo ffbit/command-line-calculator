@@ -38,4 +38,12 @@ public class Token {
                 '}';
     }
 
+    public boolean isLiteral() {
+        return type == TokenType.LITERAL;
+    }
+
+    public int getPrecedence() {
+        return type.getPrecedence();
+    }
+
 }
