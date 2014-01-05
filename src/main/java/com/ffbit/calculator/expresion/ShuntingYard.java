@@ -16,7 +16,7 @@ public class ShuntingYard {
                 output.add(token);
             } else {
                 while (!operatorStack.isEmpty()
-                        && operatorStack.peekFirst().getType().getPrecedence() >= token.getType().getPrecedence()) {
+                        && token.getPrecedence() <= operatorStack.peekFirst().getPrecedence()) {
                     output.add(operatorStack.removeFirst());
                 }
 
