@@ -4,5 +4,10 @@ public enum TokenType {
     LITERAL,
     ADDITION,
     SUBTRACTION,
-    MULTIPLY
+    MULTIPLY;
+
+    public int getPrecedence() {
+        return 0;
+    }
+
 }
