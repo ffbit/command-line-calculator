@@ -3,7 +3,7 @@ package com.ffbit.calculator.expresion;
 public enum TokenType {
     LITERAL,
     ADDITION(1),
-    SUBTRACTION,
+    SUBTRACTION(1),
     MULTIPLY(2);
 
     private int precedence;
