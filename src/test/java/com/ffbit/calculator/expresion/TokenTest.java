@@ -39,4 +39,9 @@ public class TokenTest {
         assertThat(token, is(not(new Token(lexeme, type))));
     }
 
+    @Test
+    public void itShouldBeLiteral() throws Exception {
+        assertThat(token.isLiteral(), is(true));
+    }
+
 }
