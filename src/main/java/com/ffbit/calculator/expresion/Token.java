@@ -39,7 +39,7 @@ public class Token {
     }
 
     public boolean isLiteral() {
-        return true;
+        return type == TokenType.LITERAL;
     }
 
 }
