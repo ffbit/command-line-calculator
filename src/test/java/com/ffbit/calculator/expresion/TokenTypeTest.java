@@ -27,4 +27,9 @@ public class TokenTypeTest {
         assertThat(ADDITION.getPrecedence(), is(comparesEqualTo(SUBTRACTION.getPrecedence())));
     }
 
+    @Test
+    public void MultiplicationShouldHaveSamePrecedenceAsDivision() throws Exception {
+        assertThat(MULTIPLY.getPrecedence(), is(comparesEqualTo(DIVISION.getPrecedence())));
+    }
+
 }
