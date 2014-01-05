@@ -44,4 +44,15 @@ public class TokenTest {
         assertThat(token.isLiteral(), is(true));
     }
 
+    @Test
+    @Parameters({
+            "+, ADDITION",
+            "-, SUBTRACTION",
+            "*, MULTIPLICATION",
+            "/, DIVISION"
+    })
+    public void itShouldNotBeLiteral(String lexeme, TokenType type) throws Exception {
+        assertThat(new Token(lexeme, type).isLiteral(), is(false));
+    }
+
 }
