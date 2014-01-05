@@ -28,6 +28,8 @@ public class RpnEvaluator {
                     result = left * right;
                 } else if ((token.getType() == TokenType.SUBTRACTION)) {
                     result = left - right;
+                } else if ((token.getType() == TokenType.DIVISION)) {
+                    result = left / right;
                 }
 
                 stack.addFirst(result);
