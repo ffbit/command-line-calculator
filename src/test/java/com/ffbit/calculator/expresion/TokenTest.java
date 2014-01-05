@@ -65,8 +65,7 @@ public class TokenTest {
             "DIVISION"
     })
     public void itShouldHaveSamePrecedenceAsType(TokenType type) throws Exception {
-        assertThat(new Token("lexeme", type).getPrecedence(),
-                is(equalTo(type.getPrecedence())));
+        assertThat(new Token("lexeme", type).getPrecedence(), is(type.getPrecedence()));
     }
 
 }
