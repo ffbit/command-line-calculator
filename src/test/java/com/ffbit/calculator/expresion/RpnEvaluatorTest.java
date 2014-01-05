@@ -13,8 +13,10 @@ import static org.junit.Assert.assertThat;
 public class RpnEvaluatorTest {
     private Token one = new Token("1", TokenType.LITERAL);
     private Token two = new Token("2", TokenType.LITERAL);
+    private Token three = new Token("3", TokenType.LITERAL);
 
     private Token plus = new Token("+", TokenType.ADDITION);
+    private Token multiply = new Token("*", TokenType.MULTIPLICATION);
 
     private RpnEvaluator evaluator;
 
@@ -42,6 +44,13 @@ public class RpnEvaluatorTest {
         List<Token> rpnTokens = Arrays.asList(one, two, plus);
 
         assertThat(evaluator.evaluate(rpnTokens), is(3));
+    }
+
+    @Test
+    public void itShouldEvaluateTwoMultiplyByThreeToSix() throws Exception {
+        List<Token> rpnTokens = Arrays.asList(two, three, multiply);
+
+        assertThat(evaluator.evaluate(rpnTokens), is(6));
     }
 
 }
