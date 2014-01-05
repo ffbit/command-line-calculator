@@ -15,12 +15,17 @@ public class ShuntingYard {
             if (token.getType() == TokenType.LITERAL) {
                 output.add(token);
             } else {
-                operatorStack.add(token);
+                while (!operatorStack.isEmpty()
+                        && operatorStack.peekFirst().getType().getPrecedence() >= token.getType().getPrecedence()) {
+                    output.add(operatorStack.removeFirst());
+                }
+
+                operatorStack.addFirst(token);
             }
         }
 
         while (!operatorStack.isEmpty()) {
-            output.add(operatorStack.pop());
+            output.add(operatorStack.removeFirst());
         }
 
         return output;
