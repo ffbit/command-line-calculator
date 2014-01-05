@@ -5,7 +5,11 @@ import java.util.List;
 public class RpnEvaluator {
 
     public int evaluate(List<Token> tokens) {
-        return 0;
+        if (tokens.isEmpty()) {
+            return 0;
+        }
+
+        return 1;
     }
 
 }
