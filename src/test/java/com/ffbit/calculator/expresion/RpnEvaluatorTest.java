@@ -14,10 +14,12 @@ public class RpnEvaluatorTest {
     private Token one = new Token("1", TokenType.LITERAL);
     private Token two = new Token("2", TokenType.LITERAL);
     private Token three = new Token("3", TokenType.LITERAL);
+    private Token four = new Token("4", TokenType.LITERAL);
 
     private Token plus = new Token("+", TokenType.ADDITION);
     private Token minus = new Token("-", TokenType.SUBTRACTION);
     private Token multiply = new Token("*", TokenType.MULTIPLICATION);
+    private Token divide = new Token("/", TokenType.DIVISION);
 
     private RpnEvaluator evaluator;
     private List<Token> rpnTokens;
@@ -60,6 +62,13 @@ public class RpnEvaluatorTest {
         rpnTokens = Arrays.asList(one, two, minus);
 
         assertThat(evaluator.evaluate(rpnTokens), is(-1));
+    }
+
+    @Test
+    public void itShouldEvaluateFourDivideByTwoToTwo() throws Exception {
+        rpnTokens = Arrays.asList(four, two, divide);
+
+        assertThat(evaluator.evaluate(rpnTokens), is(2));
     }
 
 }
