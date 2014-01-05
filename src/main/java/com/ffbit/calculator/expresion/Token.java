@@ -42,4 +42,8 @@ public class Token {
         return type == TokenType.LITERAL;
     }
 
+    public int getPrecedence() {
+        return type.getPrecedence();
+    }
+
 }
