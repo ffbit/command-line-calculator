@@ -23,6 +23,11 @@ public class RpnEvaluator {
                     Integer right = stack.removeFirst();
                     Integer result = left + right;
                     stack.addFirst(result);
+                } else if ((token.getType() == TokenType.MULTIPLICATION)) {
+                    Integer left = stack.removeFirst();
+                    Integer right = stack.removeFirst();
+                    Integer result = left * right;
+                    stack.addFirst(result);
                 }
             }
         }

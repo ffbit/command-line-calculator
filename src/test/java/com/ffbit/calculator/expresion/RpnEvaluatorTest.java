@@ -19,6 +19,7 @@ public class RpnEvaluatorTest {
     private Token multiply = new Token("*", TokenType.MULTIPLICATION);
 
     private RpnEvaluator evaluator;
+    private List<Token> rpnTokens;
 
     @Before
     public void setUp() throws Exception {
@@ -27,28 +28,28 @@ public class RpnEvaluatorTest {
 
     @Test
     public void itShouldEvaluateEmptyListOfTokensToZero() throws Exception {
-        List<Token> rpnTokens = Collections.emptyList();
+        rpnTokens = Collections.emptyList();
 
         assertThat(evaluator.evaluate(rpnTokens), is(0));
     }
 
     @Test
     public void itShouldEvaluateOneToOne() throws Exception {
-        List<Token> rpnTokens = Arrays.asList(one);
+        rpnTokens = Arrays.asList(one);
 
         assertThat(evaluator.evaluate(rpnTokens), is(1));
     }
 
     @Test
     public void itShouldEvaluateOnePlusTwoToThree() throws Exception {
-        List<Token> rpnTokens = Arrays.asList(one, two, plus);
+        rpnTokens = Arrays.asList(one, two, plus);
 
         assertThat(evaluator.evaluate(rpnTokens), is(3));
     }
 
     @Test
     public void itShouldEvaluateTwoMultiplyByThreeToSix() throws Exception {
-        List<Token> rpnTokens = Arrays.asList(two, three, multiply);
+        rpnTokens = Arrays.asList(two, three, multiply);
 
         assertThat(evaluator.evaluate(rpnTokens), is(6));
     }
