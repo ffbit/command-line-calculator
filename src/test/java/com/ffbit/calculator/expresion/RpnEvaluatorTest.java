@@ -16,6 +16,7 @@ public class RpnEvaluatorTest {
     private Token three = new Token("3", TokenType.LITERAL);
 
     private Token plus = new Token("+", TokenType.ADDITION);
+    private Token minus = new Token("-", TokenType.SUBTRACTION);
     private Token multiply = new Token("*", TokenType.MULTIPLICATION);
 
     private RpnEvaluator evaluator;
@@ -52,6 +53,13 @@ public class RpnEvaluatorTest {
         rpnTokens = Arrays.asList(two, three, multiply);
 
         assertThat(evaluator.evaluate(rpnTokens), is(6));
+    }
+
+    @Test
+    public void itShouldEvaluateOneMinusTwoToMinusOne() throws Exception {
+        rpnTokens = Arrays.asList(one, two, minus);
+
+        assertThat(evaluator.evaluate(rpnTokens), is(-1));
     }
 
 }

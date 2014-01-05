@@ -18,17 +18,17 @@ public class RpnEvaluator {
                 Integer argument = Integer.valueOf(token.getLexeme());
                 stack.addFirst(argument);
             } else {
+                Integer left = stack.removeFirst();
+                Integer right = stack.removeFirst();
+                Integer result = 0;
+
                 if (token.getType() == TokenType.ADDITION) {
-                    Integer left = stack.removeFirst();
-                    Integer right = stack.removeFirst();
-                    Integer result = left + right;
-                    stack.addFirst(result);
+                    result = left + right;
                 } else if ((token.getType() == TokenType.MULTIPLICATION)) {
-                    Integer left = stack.removeFirst();
-                    Integer right = stack.removeFirst();
-                    Integer result = left * right;
-                    stack.addFirst(result);
+                    result = left * right;
                 }
+
+                stack.addFirst(result);
             }
         }
 
