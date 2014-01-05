@@ -12,6 +12,8 @@ import static org.junit.Assert.assertThat;
 public class ShuntingYardTest {
     private Token one = new Token("1", TokenType.LITERAL);
     private Token two = new Token("2", TokenType.LITERAL);
+    private Token three = new Token("3", TokenType.LITERAL);
+    private Token four = new Token("4", TokenType.LITERAL);
 
     private Token plus = new Token("+", TokenType.ADDITION);
     private Token minus = new Token("-", TokenType.SUBTRACTION);
@@ -57,6 +59,17 @@ public class ShuntingYardTest {
         inputTokens = Arrays.asList(one, divide, two);
 
         assertThat(shuntingYard.toRpn(inputTokens), contains(one, two, divide));
+    }
+
+    @Test
+    public void itShouldShuntInRespectToOperatorsPrecedence() throws Exception {
+        inputTokens = Arrays.asList(one, plus, two, multiply, three, plus, four);
+
+        List<Token> expected = Arrays.asList(one, two, three, multiply, plus, four, plus);
+        List<Token> actual = shuntingYard.toRpn(inputTokens);
+        String reason = String.format("%nexpected <%s>%n but was <%s>", expected, actual);
+
+        assertThat(reason, actual, contains(expected.toArray()));
     }
 
 }
