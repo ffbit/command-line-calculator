@@ -12,7 +12,7 @@ public class ShuntingYard {
         Deque<Token> operatorStack = new LinkedList<>();
 
         for (Token token : input) {
-            if (token.getType() == TokenType.LITERAL) {
+            if (token.isLiteral()) {
                 output.add(token);
             } else {
                 while (!operatorStack.isEmpty()
