@@ -15,18 +15,21 @@ public class CalculatorMain {
 
         while (scanner.hasNext()) {
             String expression = scanner.nextLine();
-
-            Tokenizer tokenizer = new Tokenizer();
-            List<Token> tokens = tokenizer.tokenize(expression);
-
-            ShuntingYard shuntingYard = new ShuntingYard();
-            List<Token> rpnTokens = shuntingYard.toRpn(tokens);
+            List<Token> rpnTokens = toReversePolishNotation(expression);
 
             RpnEvaluator evaluator = new RpnEvaluator();
             int result = evaluator.evaluate(rpnTokens);
 
             System.out.println(result);
         }
+    }
+
+    private static List<Token> toReversePolishNotation(String expression) {
+        Tokenizer tokenizer = new Tokenizer();
+        List<Token> tokens = tokenizer.tokenize(expression);
+
+        ShuntingYard shuntingYard = new ShuntingYard();
+        return shuntingYard.toRpn(tokens);
     }
 
 }
