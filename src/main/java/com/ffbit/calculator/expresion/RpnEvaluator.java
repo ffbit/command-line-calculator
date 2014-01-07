@@ -4,8 +4,20 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Reverse Polish Notation Evaluator.
+ *
+ * @see <a href="http://en.wikipedia.org/wiki/Reverse_Polish_notation">Reverse Polish notation</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Infix_notation">Infix notation</a>
+ */
 public class RpnEvaluator {
 
+    /**
+     * Evaluates a Reverse Polish Notation token sequence to int.
+     *
+     * @param tokens a RPN token sequence.
+     * @return a integer evaluation result.
+     */
     public int evaluate(List<Token> tokens) {
         if (tokens.isEmpty()) {
             return 0;
