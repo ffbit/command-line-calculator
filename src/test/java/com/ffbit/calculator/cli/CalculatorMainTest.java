@@ -20,12 +20,12 @@ public class CalculatorMainTest {
     public StandardOutputStreamLog systemOutMock = new StandardOutputStreamLog();
 
     @Test
-    public void itShouldOutEmptyLineOnEmptyInput() throws Exception {
+    public void itShouldOutNothingOnEmptyInput() throws Exception {
         systemInMock.provideText(EMPTY_LINE);
 
         CalculatorMain.main(ARGS);
 
-        assertThat(systemOutMock.getLog(), is(EMPTY_LINE));
+        assertThat(systemOutMock.getLog(), is(""));
     }
 
     @Test
