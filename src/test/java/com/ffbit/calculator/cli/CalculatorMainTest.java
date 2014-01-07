@@ -11,7 +11,10 @@ import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emp
 
 public class CalculatorMainTest {
     private String[] ARGS = new String[]{};
-    private String EMPTY_LINE = String.format("%n");
+
+    private String EMPTY_NEW_LINE = String.format("%n");
+    private String EMPTY_STRING = "";
+    private String ONE = 1 + EMPTY_NEW_LINE;
 
     @Rule
     public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
@@ -21,20 +24,20 @@ public class CalculatorMainTest {
 
     @Test
     public void itShouldOutNothingOnEmptyInput() throws Exception {
-        systemInMock.provideText(EMPTY_LINE);
+        systemInMock.provideText(EMPTY_NEW_LINE);
 
         CalculatorMain.main(ARGS);
 
-        assertThat(systemOutMock.getLog(), is(""));
+        assertThat(systemOutMock.getLog(), is(EMPTY_STRING));
     }
 
     @Test
     public void itShouldOutOneOnOne() throws Exception {
-        systemInMock.provideText(1 + EMPTY_LINE);
+        systemInMock.provideText(ONE);
 
         CalculatorMain.main(ARGS);
 
-        assertThat(systemOutMock.getLog(), is(1 + EMPTY_LINE));
+        assertThat(systemOutMock.getLog(), is(ONE));
     }
 
 }
