@@ -8,24 +8,36 @@ import java.util.Set;
 
 public class Tokenizer {
 
-    public List<String> tokenize(String expression) {
+    public List<Token> tokenize(String expression) {
         char[] chars = expression.toCharArray();
-        List<String> tokens = new ArrayList<String>(chars.length);
+        List<Token> tokens = new ArrayList<>(chars.length);
 
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
 
             if (Character.isWhitespace(c)) {
                 continue;
-            } else if (Character.isDigit(c)) {
-                String number = readNumber(expression, i);
-                tokens.add(number);
-                i = i + number.length() - 1;
-            } else if (isOperator(c)) {
-                tokens.add(String.valueOf(c));
+            }
+
+            String lexeme = String.valueOf(c);
+            TokenType type = TokenType.LITERAL;
+
+            if (Character.isDigit(c)) {
+                lexeme = readNumber(expression, i);
+                i = i + lexeme.length() - 1;
+            } else if (c == '+') {
+                type = TokenType.ADDITION;
+            } else if (c == '-') {
+                type = TokenType.SUBTRACTION;
+            } else if (c == '*') {
+                type = TokenType.MULTIPLICATION;
+            } else if (c == '/') {
+                type = TokenType.DIVISION;
             } else {
                 throw new TokenizerException(c, i);
             }
+
+            tokens.add(new Token(lexeme, type));
         }
 
         return tokens;
