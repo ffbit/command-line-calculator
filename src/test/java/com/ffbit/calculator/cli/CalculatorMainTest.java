@@ -10,6 +10,8 @@ import static org.junit.Assert.assertThat;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
 public class CalculatorMainTest {
+    private String[] ARGS = new String[]{};
+    private String EMPTY_LINE = String.format("%n");
 
     @Rule
     public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
@@ -19,11 +21,11 @@ public class CalculatorMainTest {
 
     @Test
     public void itShouldOutEmptyLineOnEmptyInput() throws Exception {
-        systemInMock.provideText(String.format("%n"));
+        systemInMock.provideText(EMPTY_LINE);
 
-        CalculatorMain.main(new String[]{});
+        CalculatorMain.main(ARGS);
 
-        assertThat(systemOutMock.getLog(), is(String.format("%n")));
+        assertThat(systemOutMock.getLog(), is(EMPTY_LINE));
     }
 
 }
