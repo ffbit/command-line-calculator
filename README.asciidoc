@@ -1,5 +1,9 @@
 == A command line calculator
 
+The main goal is to write a simple command line calculator using
+http://en.wikipedia.org/wiki/Test-driven_development[TDD] and taking as simple steps as I can.
+So, there are going to be a lot of commits.
+
 image:https://travis-ci.org/ffbit/command-line-calculator.png["Build Status",link="https://travis-ci.org/ffbit/command-line-calculator"]
 
 === Resources Links
