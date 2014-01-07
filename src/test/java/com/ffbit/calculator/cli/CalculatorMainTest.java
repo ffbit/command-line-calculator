@@ -40,4 +40,13 @@ public class CalculatorMainTest {
         assertThat(systemOutMock.getLog(), is(ONE));
     }
 
+    @Test
+    public void itShouldPrintEvaluatedExpressionResult() throws Exception {
+        systemInMock.provideText("1 + 2");
+
+        CalculatorMain.main(ARGS);
+
+        assertThat(systemOutMock.getLog(), is("3" + EMPTY_NEW_LINE));
+    }
+
 }
