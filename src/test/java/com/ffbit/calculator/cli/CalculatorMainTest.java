@@ -28,4 +28,13 @@ public class CalculatorMainTest {
         assertThat(systemOutMock.getLog(), is(EMPTY_LINE));
     }
 
+    @Test
+    public void itShouldOutOneOnOne() throws Exception {
+        systemInMock.provideText(1 + EMPTY_LINE);
+
+        CalculatorMain.main(ARGS);
+
+        assertThat(systemOutMock.getLog(), is(1 + EMPTY_LINE));
+    }
+
 }
