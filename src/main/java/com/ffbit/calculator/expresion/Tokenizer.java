@@ -1,10 +1,7 @@
 package com.ffbit.calculator.expresion;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Tokenizer {
 
@@ -52,13 +49,6 @@ public class Tokenizer {
         }
 
         return expression.substring(startIndex, endIndex);
-    }
-
-    private boolean isOperator(char c) {
-        final Set<Character> operations =
-                new HashSet<Character>(Arrays.asList('+', '-', '*', '/'));
-
-        return operations.contains(c);
     }
 
 }
