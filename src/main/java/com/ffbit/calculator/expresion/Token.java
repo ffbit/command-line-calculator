@@ -1,5 +1,7 @@
 package com.ffbit.calculator.expresion;
 
+import java.util.Objects;
+
 public class Token {
     private final String lexeme;
     private final TokenType type;
@@ -22,12 +24,10 @@ public class Token {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Token token = (Token) o;
+        Token that = (Token) o;
 
-        if (lexeme != null ? !lexeme.equals(token.lexeme) : token.lexeme != null) return false;
-        if (type != token.type) return false;
-
-        return true;
+        return Objects.equals(lexeme, that.lexeme)
+                && Objects.equals(type, that.type);
     }
 
     @Override

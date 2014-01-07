@@ -13,9 +13,17 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 public class TokenizerTest {
+    private Token one = new Token("1", TokenType.LITERAL);
+    private Token two = new Token("2", TokenType.LITERAL);
+    private Token twelve = new Token("12", TokenType.LITERAL);
+
+    private Token plus = new Token("+", TokenType.ADDITION);
+    private Token minus = new Token("-", TokenType.SUBTRACTION);
+    private Token multiply = new Token("*", TokenType.MULTIPLICATION);
+    private Token divide = new Token("/", TokenType.DIVISION);
+
     private Tokenizer tokenizer;
     private String expression;
 
@@ -28,42 +36,42 @@ public class TokenizerTest {
     public void itShouldTokenizeSingleDigitExpression() throws Exception {
         expression = "1";
 
-        assertThat(tokenizer.tokenize(expression), contains("1"));
+        assertThat(tokenizer.tokenize(expression), contains(one));
     }
 
     @Test
     public void itShouldParseSimplestAdditionExpression() throws Exception {
         expression = "1+2";
 
-        assertThat(tokenizer.tokenize(expression), contains("1", "+", "2"));
+        assertThat(tokenizer.tokenize(expression), contains(one, plus, two));
     }
 
     @Test
     public void itShouldTokenizeSimplestSubtractionExpression() throws Exception {
         expression = "1-2";
 
-        assertThat(tokenizer.tokenize(expression), contains("1", "-", "2"));
+        assertThat(tokenizer.tokenize(expression), contains(one, minus, two));
     }
 
     @Test
     public void itShouldTokenizeSimplestMultiplicationExpression() throws Exception {
         expression = "1*2";
 
-        assertThat(tokenizer.tokenize(expression), contains("1", "*", "2"));
+        assertThat(tokenizer.tokenize(expression), contains(one, multiply, two));
     }
 
     @Test
     public void itShouldTokenizeSimplestDivisionExpression() throws Exception {
         expression = "1/2";
 
-        assertThat(tokenizer.tokenize(expression), contains("1", "/", "2"));
+        assertThat(tokenizer.tokenize(expression), contains(one, divide, two));
     }
 
     @Test
     public void itShouldIgnoreWightSpaces() throws Exception {
         expression = " 1  +   2 ";
 
-        assertThat(tokenizer.tokenize(expression), contains("1", "+", "2"));
+        assertThat(tokenizer.tokenize(expression), contains(one, plus, two));
     }
 
     @Test
@@ -79,9 +87,9 @@ public class TokenizerTest {
     @Test
     public void itShouldTokenizeMultiDigitExpression() throws Exception {
         expression = "12";
-        String[] expected = {"12"};
+        Token[] expected = {twelve};
 
-        List<String> actual = tokenizer.tokenize(expression);
+        List<Token> actual = tokenizer.tokenize(expression);
         String reason = format("actual is %s but expected %s", actual, Arrays.toString(expected));
         assertThat(reason, actual, contains(expected));
     }
