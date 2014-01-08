@@ -10,8 +10,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
 public class CalculatorMainTest {
-    private String[] ARGS = new String[]{};
-
     private String EMPTY_NEW_LINE = String.format("%n");
     private String EMPTY_STRING = "";
     private String ONE = 1 + EMPTY_NEW_LINE;
@@ -26,7 +24,7 @@ public class CalculatorMainTest {
     public void itShouldOutNothingOnEmptyInput() throws Exception {
         systemInMock.provideText(EMPTY_NEW_LINE);
 
-        CalculatorMain.main(ARGS);
+        CalculatorMain.main();
 
         assertThat(systemOutMock.getLog(), is(EMPTY_STRING));
     }
@@ -35,7 +33,7 @@ public class CalculatorMainTest {
     public void itShouldOutOneOnOne() throws Exception {
         systemInMock.provideText(ONE);
 
-        CalculatorMain.main(ARGS);
+        CalculatorMain.main();
 
         assertThat(systemOutMock.getLog(), is(ONE));
     }
@@ -44,7 +42,7 @@ public class CalculatorMainTest {
     public void itShouldPrintEvaluatedExpressionResult() throws Exception {
         systemInMock.provideText("1 + 2");
 
-        CalculatorMain.main(ARGS);
+        CalculatorMain.main();
 
         assertThat(systemOutMock.getLog(), is("3" + EMPTY_NEW_LINE));
     }
