@@ -5,7 +5,9 @@ public enum TokenType {
     ADDITION(1),
     SUBTRACTION(1),
     MULTIPLICATION(2),
-    DIVISION(2);
+    DIVISION(2),
+    L_PAREN,
+    R_PAREN;
 
     private int precedence;
 
