@@ -94,4 +94,14 @@ public class TokenizerTest {
         assertThat(reason, actual, contains(expected));
     }
 
+    @Test
+    public void itShouldTokenizeParenthesis() throws Exception {
+        expression = "(1 + 2)";
+
+        assertThat(tokenizer.tokenize(expression),
+                contains(new Token("(", TokenType.L_PAREN),
+                        one, plus, two,
+                        new Token(")", TokenType.R_PAREN)));
+    }
+
 }
