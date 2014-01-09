@@ -30,6 +30,10 @@ public class Tokenizer {
                 type = TokenType.MULTIPLICATION;
             } else if (c == '/') {
                 type = TokenType.DIVISION;
+            } else if (c == '(') {
+                type = TokenType.L_PAREN;
+            } else if (c == ')') {
+                type = TokenType.R_PAREN;
             } else {
                 throw new TokenizerException(c, i);
             }
