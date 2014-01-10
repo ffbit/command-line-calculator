@@ -28,6 +28,14 @@ public class ShuntingYard {
         for (Token token : input) {
             if (token.isLiteral()) {
                 output.add(token);
+            } else if (token.getType() == TokenType.L_PAREN) {
+                operatorStack.addFirst(token);
+            } else if (token.getType() == TokenType.R_PAREN) {
+                while (operatorStack.peekFirst().getType() != TokenType.L_PAREN) {
+                    output.add(operatorStack.removeFirst());
+                }
+
+                operatorStack.removeFirst();
             } else {
                 while (!operatorStack.isEmpty()
                         && token.getPrecedence() <= operatorStack.peekFirst().getPrecedence()) {
