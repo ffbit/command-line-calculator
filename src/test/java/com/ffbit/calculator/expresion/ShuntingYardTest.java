@@ -20,6 +20,9 @@ public class ShuntingYardTest {
     private Token multiply = new Token("*", TokenType.MULTIPLICATION);
     private Token divide = new Token("/", TokenType.DIVISION);
 
+    private Token lparen = new Token("(", TokenType.L_PAREN);
+    private Token rparen = new Token(")", TokenType.R_PAREN);
+
     private ShuntingYard shuntingYard;
     private List<Token> inputTokens;
 
@@ -70,6 +73,13 @@ public class ShuntingYardTest {
         String reason = String.format("%nexpected <%s>%n but was <%s>", expected, actual);
 
         assertThat(reason, actual, contains(expected.toArray()));
+    }
+
+    @Test
+    public void itShouldShuntInRespectToParenthesis() throws Exception {
+        inputTokens = Arrays.asList(lparen, one, plus, two, rparen, multiply, three);
+
+        assertThat(shuntingYard.toRpn(inputTokens), contains(one, two, plus, three, multiply));
     }
 
 }
