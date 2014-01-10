@@ -24,6 +24,9 @@ public class TokenizerTest {
     private Token multiply = new Token("*", TokenType.MULTIPLICATION);
     private Token divide = new Token("/", TokenType.DIVISION);
 
+    private Token lparen = new Token("(", TokenType.L_PAREN);
+    private Token rparen = new Token(")", TokenType.R_PAREN);
+
     private Tokenizer tokenizer;
     private String expression;
 
@@ -98,10 +101,7 @@ public class TokenizerTest {
     public void itShouldTokenizeParenthesis() throws Exception {
         expression = "(1 + 2)";
 
-        assertThat(tokenizer.tokenize(expression),
-                contains(new Token("(", TokenType.L_PAREN),
-                        one, plus, two,
-                        new Token(")", TokenType.R_PAREN)));
+        assertThat(tokenizer.tokenize(expression), contains(lparen, one, plus, two, rparen));
     }
 
 }
